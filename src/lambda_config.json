@@ -1,12 +1,68 @@
 {
-  "sampleFunctionName":{
-    "handlerName":"index.ping",
-    "timeLimitInMilliSeconds":1000,
+  "GetUserData": {
+    "handlerName": "UserManagement.GetUserData",
+    "timeLimitInMilliSeconds": 3000,
     "authenticationMode": "AUTHENTICATED"
   },
-  "addTwoNumbers": {
-    "handlerName": "test/index2.add",
-    "timeLimitInMilliSeconds": 1000,
+  "AddScoreAndCoin": {
+    "handlerName": "UserManagement.AddScoreAndCoin",
+    "timeLimitInMilliSeconds": 3000,
+    "authenticationMode": "AUTHENTICATED"
+  },"GetUserConfig": {
+    "handlerName": "UserManagement.GetUserConfig",
+    "timeLimitInMilliSeconds": 3000,
+    "authenticationMode": "AUTHENTICATED"
+  }, "UpdataUserConfig":{
+    "handlerName":"UserManagement.UpdataUserConfig",
+    "timeLimitInMilliSeconds":3000,
+    "authenticationMode": "AUTHENTICATED"
+  }, "GetAchievements":{
+    "handlerName":"Achievement.GetAchievements",
+    "timeLimitInMilliSeconds":3000,
+    "authenticationMode": "AUTHENTICATED"
+  }, "GetClaimedAchievements":{
+    "handlerName":"Achievement.GetClaimedAchievements",
+    "timeLimitInMilliSeconds":3000,
+    "authenticationMode": "AUTHENTICATED"
+  }, "ClaimAchievements":{
+    "handlerName":"Achievement.ClaimAchievements",
+    "timeLimitInMilliSeconds":3000,
+    "authenticationMode": "AUTHENTICATED"
+  }, "GetInvitaionToken":{
+    "handlerName":"Invitation.GetInvitaionToken",
+    "timeLimitInMilliSeconds":3000,
+    "authenticationMode": "AUTHENTICATED"
+  }, "ApplyInvitation":{
+    "handlerName":"Invitation.ApplyInvitation",
+    "timeLimitInMilliSeconds":3000,
+    "authenticationMode": "AUTHENTICATED"
+  }, "GetLeaderboard":{
+    "handlerName":"LeaderBoard.GetLeaderboard",
+    "timeLimitInMilliSeconds":3000,
+    "authenticationMode": "AUTHENTICATED"
+  }, "GetIabPackages":{
+    "handlerName":"Purchase.GetIabPackages",
+    "timeLimitInMilliSeconds":3000,
+    "authenticationMode": "PUBLIC"
+  }, "PurchaseIabPackage":{
+    "handlerName":"Purchase.PurchaseIabPackage",
+    "timeLimitInMilliSeconds":3000,
+    "authenticationMode": "AUTHENTICATED"
+  }, "GetGamePurchasableItems":{
+    "handlerName":"Purchase.GetGamePurchasableItems",
+    "timeLimitInMilliSeconds":3000,
+    "authenticationMode": "AUTHENTICATED"
+  }, "PurchaseGamePurchasableItem":{
+    "handlerName":"Purchase.PurchaseGamePurchasableItem",
+    "timeLimitInMilliSeconds":3000,
+    "authenticationMode": "AUTHENTICATED"
+  }, "GetPurchasedGamePurchasableItems":{
+    "handlerName":"Purchase.GetPurchasedGamePurchasableItems",
+    "timeLimitInMilliSeconds":3000,
+    "authenticationMode": "AUTHENTICATED"
+  }, "GetSettings":{
+    "handlerName":"Setting.GetSettings",
+    "timeLimitInMilliSeconds":3000,
     "authenticationMode": "PUBLIC"
   }
 }

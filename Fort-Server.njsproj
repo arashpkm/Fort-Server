@@ -16,6 +16,13 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Compile Include="src\Achievement.js" />
+    <Compile Include="src\Interception\Intercept.js" />
+    <Compile Include="src\Invitation.js" />
+    <Compile Include="src\LeaderBoard.js" />
+    <Compile Include="src\Purchase.js" />
+    <Compile Include="src\Setting.js" />
+    <Compile Include="src\UserManagement.js" />
     <Content Include="backtory_config.json" />
     <Content Include="api\package.json" />
     <Compile Include="api\api.js" />
@@ -23,18 +30,16 @@
     <Compile Include="api\controller.js" />
     <Compile Include="api\utils.js" />
     <Content Include="src\lambda_config.json" />
-    <Compile Include="src\index.js" />
     <Content Include="api\static\style.css" />
     <Content Include="api\static\play.png" />
     <Compile Include="api\static\main.js" />
-    <Compile Include="src\test\index2.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="api" />
     <Folder Include="api\static" />
     <Folder Include="api\views" />
     <Folder Include="src" />
-    <Folder Include="src\test" />
+    <Folder Include="src\Interception\" />
     <Folder Include="typings\" />
     <Folder Include="typings\globals\" />
     <Folder Include="typings\globals\node\" />
