@@ -1,5 +1,5 @@
 ﻿var methods = [];
-
+//var Backtory = require("backtory-sdk");
 function CheckUserAndAdd(requestBody, context, finalAction) {
     var userId = context.getSecurityContext().userId;
     var userName = context.getSecurityContext().userName;
@@ -53,7 +53,7 @@ exports.Intercept = function (func) {
                 if (userData == null) {
                     context.fail();
                 } else {
-                    context.UserData = userData;
+                    context.userData = userData;
                     func(requestBody, context);
                 }
             });
