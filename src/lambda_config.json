@@ -19,7 +19,7 @@
   }, "GetAchievements":{
     "handlerName":"Achievement.GetAchievements",
     "timeLimitInMilliSeconds":3000,
-    "authenticationMode": "AUTHENTICATED"
+    "authenticationMode": "PUBLIC"
   }, "GetClaimedAchievements":{
     "handlerName":"Achievement.GetClaimedAchievements",
     "timeLimitInMilliSeconds":3000,

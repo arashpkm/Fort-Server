@@ -13,8 +13,9 @@ function CheckUserAndAdd(requestBody, context, finalAction) {
             else {
                 var Settings = Backtory.Object.extend("Settings");
                 var query = new Backtory.Query(Settings);
-                query.get("5911fcc05e17c4000139c402", {
-                    success: function (result) {
+                query.find({
+                    success: function (results) {
+                        var result = results[0];
                         var settings = result.get("Settings");
                         var userData = new UserData();
                         userData.set("Score", 0);

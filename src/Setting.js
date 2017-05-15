@@ -1,11 +1,16 @@
 ﻿var interception = require("./Interception/Intercept.js");
 
 exports.GetSettings = interception.Intercept(function (requestBody, context) {
-    var x = requestBody.x;
-    var y = requestBody.y;
-
-    context.log("First number = " + x);
-    context.log("Second number = " + y);
-    context.log("Answer = " + (x + y));
-    context.succeed(x + y);
+    var Settings = Backtory.Object.extend("Settings");
+    var query = new Backtory.Query(Settings);
+    query.find({
+        success: function (results) {
+            var result = results[0];
+            var settings = result.get("Settings");
+            context.succeed(settings);
+        },
+        error: function (object, error) {
+            context.fail("InternalServerError");
+        }
+    });
 });
