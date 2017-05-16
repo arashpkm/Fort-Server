@@ -7,7 +7,7 @@ exports.GetAchievements = interception.Intercept(function (requestBody, context)
         success: function (results) {
             var achievements =[];
             for(var i=0;i<results.length;i++){
-                achievements.push({AchievementId:results[i].get("AchievementId"),Score:results[i].get("Score"),Coin:results[i].get("Coin")});
+                achievements.push({AchievementId:results[i].get("AchievementId"),Score:results[i].get("Score"),Values:results[i].get("Values")});
             }
             context.succeed(achievements);
         },
@@ -74,7 +74,7 @@ var isAchievementClaimedByUser = function (achievementId,context,resultAction)
         }
     });
 }
-var reloveAchievements =function (index,achievementIds,context)
+var reloveAchievements =function (index,achievementIds,context,settings)
 {
     if(index==achievementIds.length) {
         context.succeed({});
@@ -86,10 +86,17 @@ var reloveAchievements =function (index,achievementIds,context)
                 var relation = context.userData.relation("UserAchievements");
                 relation.add(claimResult.achievement);
                 context.userData.set("Score",context.userData.get("Score")+claimResult.achievement.get("Score"))
-                context.userData.set("Coin",context.userData.get("Coin")+claimResult.achievement.get("Coin"))
+                var values = context.userData.get("Values");
+                var achievementValues = claimResult.achievement.get("Values");
+                for(var i=0;i<settings.ValuesDefenition.length;i++){
+                    if(_.has(achievementValues,settings.ValuesDefenition[i])){
+                        values[settings.ValuesDefenition[i]]+=achievementValues[settings.ValuesDefenition[i]];
+                    }
+                }
+                context.userData.set("Values",values)
                 context.userData.save({
-                    success: function(gameScore) {
-                        reloveAchievements(index+1,achievementIds,context);
+                    success: function() {
+                        reloveAchievements(index+1,achievementIds,context,settings);
                     },error : function (error) {
                         context.fail("Invalid Parameter");
                     }
@@ -103,5 +110,17 @@ exports.ClaimAchievements = interception.Intercept(function (requestBody, contex
         context.fail("Invalid Parameter");
         return;
     }
-    reloveAchievements(0,requestBody.achievementIds,context);
+    var Settings = Backtory.Object.extend("Settings");
+    var query = new Backtory.Query(Settings);
+    query.find({
+        success: function (results) {
+            var result = results[0];
+            var settings = result.get("Settings");
+            reloveAchievements(0,requestBody.achievementIds,context,settings);
+        },
+        error: function (object, error) {
+            context.fail("InternalServerError");
+        }
+    });
+
 });

@@ -1,4 +1,5 @@
 Backtory = require("backtory-sdk");
+_ = require('lodash');
 var randomstring = require('randomstring');
 var express = require('express');
 var bodyParser = require('body-parser');

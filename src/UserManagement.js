@@ -1,34 +1,52 @@
 ﻿var interception = require("./Interception/Intercept.js");
 
 exports.GetUserData = interception.Intercept(function (requestBody, context) {
-    context.succeed({Score:context.userData.get("Score"),Coin:context.userData.get("Coin")});
+    context.succeed({Score:context.userData.get("Score"),Values:context.userData.get("Values")});
 });
 
-exports.AddScoreAndCoin = interception.Intercept(function (requestBody, context) {
-    var tokens = context.userData.get("ScoreAndCoinAddedTokens")||[];
-    if(!("addToken" in requestBody) || !("score" in requestBody) || !("coin" in requestBody)) {
+exports.AddScoreAndValues = interception.Intercept(function (requestBody, context) {
+    var tokens = context.userData.get("ScoreAndValuesAddedTokens")||[];
+    if(!("addToken" in requestBody) || !("score" in requestBody) || !("values" in requestBody)) {
         context.fail("Invalid Parameter");
         return;
     }
     if(tokens.includes(requestBody.addToken)) {
         context.succeed({
-            ScoreAdded:false,
+            Added:false,
         });
     }
     else{
-        context.userData.set("Score",context.userData.get("Score")+requestBody.score);
-        context.userData.set("Coin",context.userData.get("Coin")+requestBody.coin);
-        tokens.push(requestBody.addToken);
-        context.userData.set("ScoreAndCoinAddedTokens",tokens);
-        context.userData.save({
-            success: function(gameScore) {
-                context.succeed({
-                    ScoreAdded:true,
+        var Settings = Backtory.Object.extend("Settings");
+        var query = new Backtory.Query(Settings);
+        query.find({
+            success: function (results) {
+                var result = results[0];
+                var settings = result.get("Settings");
+                context.userData.set("Score",context.userData.get("Score")+requestBody.score);
+                var values = context.userData.get("Values");
+                for(var i=0;i<settings.ValuesDefenition.length;i++){
+                    if(settings.ValuesDefenition[i] in requestBody.values && _.isNumber(requestBody.values[settings.ValuesDefenition[i]])){
+                        values[settings.ValuesDefenition[i]]+=requestBody.values[settings.ValuesDefenition[i]];
+                    }
+                }
+                context.userData.set("Values",values);
+                tokens.push(requestBody.addToken);
+                context.userData.set("ScoreAndValuesAddedTokens",tokens);
+                context.userData.save({
+                    success: function() {
+                        context.succeed({
+                            Added:true,
+                        });
+                    },error : function (error) {
+                        context.fail("Invalid Parameter");
+                    }
                 });
-            },error : function (error) {
-                context.fail("Invalid Parameter");
+            },
+            error: function (object, error) {
+                context.fail("InternalServerError");
             }
         });
+
     }
 });
 
@@ -47,7 +65,7 @@ exports.UpdataUserConfig = interception.Intercept(function (requestBody, context
         success: function(gameScore) {
             context.succeed({});
         },error : function (error) {
-            context.fail("Invalid Parameter");
+            context.fail("Internal Error");
         }
     });
 });

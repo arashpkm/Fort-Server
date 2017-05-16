@@ -4,8 +4,8 @@
     "timeLimitInMilliSeconds": 3000,
     "authenticationMode": "AUTHENTICATED"
   },
-  "AddScoreAndCoin": {
-    "handlerName": "UserManagement.AddScoreAndCoin",
+  "AddScoreAndValues": {
+    "handlerName": "UserManagement.AddScoreAndValues",
     "timeLimitInMilliSeconds": 3000,
     "authenticationMode": "AUTHENTICATED"
   },"GetUserConfig": {
@@ -36,6 +36,10 @@
     "handlerName":"Invitation.ApplyInvitation",
     "timeLimitInMilliSeconds":3000,
     "authenticationMode": "AUTHENTICATED"
+  }, "GetUserInvitationInfo":{
+  "handlerName":"Invitation.GetUserInvitationInfo",
+  "timeLimitInMilliSeconds":3000,
+  "authenticationMode": "AUTHENTICATED"
   }, "GetLeaderboard":{
     "handlerName":"LeaderBoard.GetLeaderboard",
     "timeLimitInMilliSeconds":3000,

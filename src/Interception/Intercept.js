@@ -19,7 +19,11 @@ function CheckUserAndAdd(requestBody, context, finalAction) {
                         var settings = result.get("Settings");
                         var userData = new UserData();
                         userData.set("Score", 0);
-                        userData.set("Coin", settings.StartupCoin);
+                        var values={};
+                        for(var i=0;i<settings.ValuesDefenition.length;i++){
+                            values[settings.ValuesDefenition[i]] = settings.StartupValues[settings.ValuesDefenition[i]];
+                        }
+                        userData.set("Values", values);
                         userData.set("UserId", userId);
                         userData.set("LastAddId", 0);
                         userData.set("UserName", userName);
