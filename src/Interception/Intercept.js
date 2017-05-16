@@ -1,5 +1,8 @@
-﻿var methods = [];
-//var Backtory = require("backtory-sdk");
+﻿//var methods = [];
+var Backtory = require("backtory-sdk");
+var _ = require("lodash");
+
+
 function CheckUserAndAdd(requestBody, context, finalAction) {
     var userId = context.getSecurityContext().userId;
     var userName = context.getSecurityContext().userName;

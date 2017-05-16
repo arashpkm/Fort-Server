@@ -1,5 +1,6 @@
 ﻿var interception = require("./Interception/Intercept.js");
-
+var Backtory = require("backtory-sdk");
+var _ = require("lodash");
 exports.GetUserData = interception.Intercept(function (requestBody, context) {
     context.succeed({Score:context.userData.get("Score"),Values:context.userData.get("Values")});
 });
