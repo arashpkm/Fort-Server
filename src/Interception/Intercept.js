@@ -1,6 +1,6 @@
 ﻿//var methods = [];
 var Backtory = require("backtory-sdk");
-var _ = require("lodash");
+//var _ = require("lodash");
 
 
 function CheckUserAndAdd(requestBody, context, finalAction) {
