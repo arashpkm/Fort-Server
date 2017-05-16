@@ -44,24 +44,32 @@
     "handlerName":"LeaderBoard.GetLeaderboard",
     "timeLimitInMilliSeconds":3000,
     "authenticationMode": "AUTHENTICATED"
-  }, "GetIabPackages":{
-    "handlerName":"Purchase.GetIabPackages",
+  }, "GetSupportedIapMarkets":{
+  "handlerName":"Purchase.GetSupportedIapMarkets",
+  "timeLimitInMilliSeconds":3000,
+  "authenticationMode": "PUBLIC"
+  }, "GetIapPackages":{
+    "handlerName":"Purchase.GetIapPackages",
     "timeLimitInMilliSeconds":3000,
     "authenticationMode": "PUBLIC"
-  }, "PurchaseIabPackage":{
-    "handlerName":"Purchase.PurchaseIabPackage",
+  }, "GetPurchasedIap":{
+  "handlerName":"Purchase.GetPurchasedIap",
+  "timeLimitInMilliSeconds":3000,
+  "authenticationMode": "PUBLIC"
+  }, "PurchaseIapPackage":{
+    "handlerName":"Purchase.PurchaseIapPackage",
+    "timeLimitInMilliSeconds":9000,
+    "authenticationMode": "AUTHENTICATED"
+  }, "GetItems":{
+    "handlerName":"Purchase.GetItems",
+    "timeLimitInMilliSeconds":3000,
+    "authenticationMode": "PUBLIC"
+  }, "PurchaseItem":{
+    "handlerName":"Purchase.PurchaseItem",
     "timeLimitInMilliSeconds":3000,
     "authenticationMode": "AUTHENTICATED"
-  }, "GetGamePurchasableItems":{
-    "handlerName":"Purchase.GetGamePurchasableItems",
-    "timeLimitInMilliSeconds":3000,
-    "authenticationMode": "AUTHENTICATED"
-  }, "PurchaseGamePurchasableItem":{
-    "handlerName":"Purchase.PurchaseGamePurchasableItem",
-    "timeLimitInMilliSeconds":3000,
-    "authenticationMode": "AUTHENTICATED"
-  }, "GetPurchasedGamePurchasableItems":{
-    "handlerName":"Purchase.GetPurchasedGamePurchasableItems",
+  }, "GetPurchasedItems":{
+    "handlerName":"Purchase.GetPurchasedItems",
     "timeLimitInMilliSeconds":3000,
     "authenticationMode": "AUTHENTICATED"
   }, "GetSettings":{
