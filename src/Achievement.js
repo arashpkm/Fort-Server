@@ -1,6 +1,6 @@
 ﻿var interception = require("./Interception/Intercept.js");
 var Backtory = require("backtory-sdk");
-var _ = require("lodash");
+var _ = require("./lodash/lodash");
 exports.GetAchievements = interception.Intercept(function (requestBody, context) {
     var Achievement = Backtory.Object.extend("Achievement");
     var query = new Backtory.Query(Achievement);

@@ -1,6 +1,6 @@
 ﻿var interception = require("./Interception/Intercept.js");
 var Backtory = require("backtory-sdk");
-var _ = require("lodash");
+var _ = require("./lodash/lodash");
 exports.GetIabPackages = interception.Intercept(function (requestBody, context) {
 
 });

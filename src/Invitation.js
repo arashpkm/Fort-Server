@@ -1,6 +1,6 @@
 ﻿var interception = require("./Interception/Intercept.js");
 var Backtory = require("backtory-sdk");
-var _ = require("lodash");
+var _ = require("./lodash/lodash");
 exports.GetInvitaionToken = interception.Intercept(function (requestBody, context) {
     context.succeed(context.userData.get("_id"));
 });

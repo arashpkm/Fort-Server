@@ -1,6 +1,6 @@
 ﻿var interception = require("./Interception/Intercept.js");
 var Backtory = require("backtory-sdk");
-var _ = require("lodash");
+var _ = require("./lodash/lodash");
 exports.GetSettings = interception.Intercept(function (requestBody, context) {
     var Settings = Backtory.Object.extend("Settings");
     var query = new Backtory.Query(Settings);
