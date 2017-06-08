@@ -143,7 +143,7 @@ exports.Intercept = function (func) {
                             results[0].set("Used",true);
                             results[0].save({
                                 success: function (savedUserData) {
-                                    CheckUserAndAdd(requestBody, context, function(userData) {
+                                    CheckUserAndAdd(requestBody.data, context, function(userData) {
                                         if (userData == null) {
                                             context.fail();
                                         } else {

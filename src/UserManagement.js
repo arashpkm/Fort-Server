@@ -244,8 +244,10 @@ var SyncAchievements = function (context,achievementData,finalResult) {
 
 var fullUpdateData = function (requestBody, context) {
     var resultCount = 0;
-    if(_.has(requestBody,"AddScoreValuesData") && _.isObject(requestBody.AddScoreValuesData)){
-        resultCount++;
+    var result = {};
+    if(_.has(requestBody,"AddScoreValuesDatas") && _.isArray(requestBody.AddScoreValuesDatas)){
+        result.AddScoreValuesResult = [];
+        resultCount+=requestBody.AddScoreValuesDatas.length;
     }
     if(_.has(requestBody,"AchievementData")&&_.isArray(requestBody.AchievementData)){
         resultCount++;
@@ -254,17 +256,23 @@ var fullUpdateData = function (requestBody, context) {
         resultCount++;
     }
     var resolvedCount = 0;
-    var result = {};
+
     var checkForFinish = function () {
         resolvedCount++;
         if(resolvedCount==resultCount){
+            result.userData = {Score:context.userData.get("Score"),Values:context.userData.get("Values")};
             context.succeed(result);
         }
     };
-    if(_.has(requestBody,"AddScoreValuesData")&& _.isObject(requestBody.AddScoreValuesData)){
-        SyncAddedScoreAndValues(context,requestBody.AddScoreValuesData,function (addScoreValuesResult) {
-            result.AddScoreValuesResult = addScoreValuesResult;
-            checkForFinish();
+    if(_.has(requestBody,"AddScoreValuesDatas")&& _.isArray(requestBody.AddScoreValuesDatas)){
+        for(var i = 0 ; i < requestBody.AddScoreValuesDatas.length ; i++){
+            requestBody.AddScoreValuesDatas[i].index = i;
+        }
+        _.forEach(requestBody.AddScoreValuesDatas,function (addScoreValuesData) {
+            SyncAddedScoreAndValues(context,addScoreValuesData,function (addScoreValuesResult) {
+                result.AddScoreValuesResult[addScoreValuesData.index] = addScoreValuesResult;
+                checkForFinish();
+            });
         });
     }
     if(_.has(requestBody,"AchievementData")&&_.isArray(requestBody.AchievementData)){
@@ -296,7 +304,7 @@ exports.GetToken = interception.Intercept(function (requestBody,context) {
     methodToken.set("ExpireDate",Date.now()+20000);
     methodToken.save({
         success: function (savedUserData) {
-            context.succeed({Token:token});
+            context.succeed(token);
         },
         error: function (error) {
             context.fail("Internal server error");
