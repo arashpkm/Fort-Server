@@ -186,7 +186,13 @@ exports.GetItems = interception.Intercept(function (requestBody, context) {
             var result = [];
             for (var i = 0; i < results.length; i++) {
                 var object = results[i];
-                result.push({ItemId:object.get("ItemId"),Costs:object.get("Costs")});
+                if(_.has(requestBody,"Full")) {
+                    result.push({ItemId:object.get("ItemId"),Costs:object.get("Costs"),Name:object.get("Name")});
+                }
+                else{
+                    result.push({ItemId:object.get("ItemId"),Costs:object.get("Costs")});
+                }
+
             }
             context.succeed(result);
         },

@@ -8,7 +8,13 @@ exports.GetAchievements = interception.Intercept(function (requestBody, context)
         success: function (results) {
             var achievements =[];
             for(var i=0;i<results.length;i++){
-                achievements.push({AchievementId:results[i].get("AchievementId"),Score:results[i].get("Score"),Values:results[i].get("Values")});
+                if(_.has(requestBody,"Full")) {
+                    achievements.push({AchievementId:results[i].get("AchievementId"),Score:results[i].get("Score"),Values:results[i].get("Values"),Name:results[i].get("Name")});
+                }
+                else{
+                    achievements.push({AchievementId:results[i].get("AchievementId"),Score:results[i].get("Score"),Values:results[i].get("Values")});
+                }
+
             }
             context.succeed(achievements);
         },

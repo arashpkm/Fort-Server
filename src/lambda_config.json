@@ -12,10 +12,18 @@
     "handlerName": "UserManagement.GetUserConfig",
     "timeLimitInMilliSeconds": 3000,
     "authenticationMode": "AUTHENTICATED"
+  }, "FullUpdateData":{
+  "handlerName":"UserManagement.FullUpdateData",
+  "timeLimitInMilliSeconds":6000,
+  "authenticationMode": "AUTHENTICATED"
   }, "UpdataUserConfig":{
     "handlerName":"UserManagement.UpdataUserConfig",
     "timeLimitInMilliSeconds":3000,
     "authenticationMode": "AUTHENTICATED"
+  }, "GetToken":{
+  "handlerName":"UserManagement.GetToken",
+  "timeLimitInMilliSeconds":3000,
+  "authenticationMode": "AUTHENTICATED"
   }, "GetAchievements":{
     "handlerName":"Achievement.GetAchievements",
     "timeLimitInMilliSeconds":3000,
