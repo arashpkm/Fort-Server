@@ -83,7 +83,7 @@ exports.GetLeaderboard = interception.Intercept(function (requestBody, context) 
                 getLessUsers(context,function (lessUsers) {
                     var dataCollection = _.concat(greaterUsers,{UserName:context.userData.get("UserName"),Score:context.userData.get("Score")},lessUsers);
                     
-                    context.succeed({TopPlayer:topPlayers,Rank:count,UserRank:_.uniqBy(dataCollection, "UserName")});
+                    context.succeed({TopPlayers:topPlayers,Rank:count,UserRank:_.uniqBy(dataCollection, "UserName")});
                 });
             });
         });

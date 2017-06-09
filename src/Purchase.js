@@ -104,7 +104,7 @@ exports.PurchaseIapPackage = interception.Intercept(function (requestBody, conte
     resolveMarketConfig(requestBody.market,context,function (marketConfig) {
         provider.checkPurchase(requestBody.payload,requestBody.purchaseToken,requestBody.sku,marketConfig,function (succeed) {
             if(!succeed){
-                context.fail("purchase verification failed from market");
+                context.succeed({MarketSuccess:false});
             } else{
                 var Packages = Backtory.Object.extend("Packages");
                 var query = new Backtory.Query(Packages);
@@ -141,7 +141,7 @@ exports.PurchaseIapPackage = interception.Intercept(function (requestBody, conte
                                             userPackagePurchase.set("PurchaseToken",requestBody.purchaseToken);
                                             userPackagePurchase.set("User",userData);
                                             userPackagePurchase.save({success:function (userPackagePurchase) {
-                                                context.succeed({Score:userData.get("Score"),Values:userData.get("Values")});
+                                                context.succeed({AddedValue:packageValues,MarketSuccess:true});
                                             },error:function (error) {
                                                 context.fail("Internal server Error");
                                             }});
