@@ -6,7 +6,10 @@ var BacktoryHelper = require("./Helpers/backtoryHelper");
 exports.GetSupportedIapMarkets = interception.Intercept(function (requestBody, context) {
     context.succeed(iapProvider.getProvidersName());
 });
-
+var GetPackageResponseFromPackage = function(object)
+{
+    return {PackageInfo:object.get("PackageInfo")||null,Price:object.get("Price"),Sku:object.get("Sku"),Values:object.get("Values")||{},Markets:markets};
+};
 exports.GetIapPackages = interception.Intercept(function (requestBody, context) {
     var packageType = _.has(requestBody,"packageType")?requestBody.packageType:0;
     var Packages = Backtory.Object.extend("Packages");
@@ -21,7 +24,7 @@ exports.GetIapPackages = interception.Intercept(function (requestBody, context) 
                 if(markets == null || markets.length ==0){
                     markets = iapProvider.getProvidersName();
                 }
-                result.push({PackageInfo:object.get("PackageInfo")||null,Price:object.get("Price"),Sku:object.get("Sku"),Values:object.get("Values")||{},Markets:markets});
+                result.push(GetPackageResponseFromPackage(object));
             }
             context.succeed(result);
         },
@@ -45,7 +48,7 @@ exports.GetPurchasedIap = interception.Intercept(function (requestBody, context)
                 var result = [];
                 for (var i = 0; i < results.length; i++) {
                     var object = results[i];
-                    result.push({Sku:packages[i].get("Sku"),Price:object.get("Price"),Market:object.get("Market"),	PurchaseToken:object.get("PurchaseToken")});
+                    result.push({Sku:packages[i].get("Sku"),Price:object.get("Price"),Market:object.get("Market"),	PurchaseToken:object.get("PurchaseToken"),DisplayName:object.get("DisplayName")});
                 }
                 context.succeed(result);
             },error:function () {
@@ -141,7 +144,7 @@ exports.PurchaseIapPackage = interception.Intercept(function (requestBody, conte
                                             userPackagePurchase.set("PurchaseToken",requestBody.purchaseToken);
                                             userPackagePurchase.set("User",userData);
                                             userPackagePurchase.save({success:function (userPackagePurchase) {
-                                                context.succeed({AddedValue:packageValues,MarketSuccess:true});
+                                                context.succeed({AddedValue:packageValues,MarketSuccess:true,Package:GetPackageResponseFromPackage(package)});
                                             },error:function (error) {
                                                 context.fail("Internal server Error");
                                             }});
