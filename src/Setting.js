@@ -4,6 +4,7 @@ var _ = require("./lodash/lodash");
 exports.GetSettings = interception.Intercept(function (requestBody, context) {
     var Settings = Backtory.Object.extend("Settings");
     var query = new Backtory.Query(Settings);
+    query.equalTo("Tag","Fort");
     query.find({
         success: function (results) {
             var result = results[0];

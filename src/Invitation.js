@@ -27,6 +27,7 @@ var applyInvitation = function (requestBody, context) {
                 invitorUserData.fetch({success: function (invitorUserData) {
                     var Settings = Backtory.Object.extend("Settings");
                     var query = new Backtory.Query(Settings);
+                    query.equalTo("Tag","Fort");
                     query.find({
                         success: function (results) {
                             var result = results[0];

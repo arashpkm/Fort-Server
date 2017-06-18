@@ -8,7 +8,7 @@ exports.GetSupportedIapMarkets = interception.Intercept(function (requestBody, c
 });
 var GetPackageResponseFromPackage = function(object)
 {
-    return {PackageInfo:object.get("PackageInfo")||null,Price:object.get("Price"),Sku:object.get("Sku"),Values:object.get("Values")||{},Markets:markets};
+    return {PackageData:object.get("PackageData")||null,Price:object.get("Price"),Sku:object.get("Sku"),Values:object.get("Values")||{},Markets:markets,PackageType:object.get("PackageType")};
 };
 exports.GetIapPackages = interception.Intercept(function (requestBody, context) {
     var packageType = _.has(requestBody,"packageType")?requestBody.packageType:0;
@@ -127,32 +127,18 @@ exports.PurchaseIapPackage = interception.Intercept(function (requestBody, conte
                                     if(count > 0){
                                         context.fail("Purchase Token already Used");
                                     }else{
-                                        var packageValues = package.get("Values");
-                                        var values = context.userData.get("Values");
-                                        _.forEach(_.keys(packageValues),function (key) {
-                                            if(_.has(values,key)){
-                                                values[key] = values[key]||0;
-                                                values[key] += packageValues[key]||0;
-                                            }
-                                        });
-                                        context.userData.set("Values",values);
-                                        context.userData.save({success:function (userData) {
-                                            var userPackagePurchase = new UserPackagePurchase();
-                                            userPackagePurchase.set("Package",package);
-                                            userPackagePurchase.set("Market",requestBody.market);
-                                            userPackagePurchase.set("Price",package.get("Price"));
-                                            userPackagePurchase.set("PurchaseToken",requestBody.purchaseToken);
-                                            userPackagePurchase.set("User",userData);
-                                            userPackagePurchase.save({success:function (userPackagePurchase) {
-                                                context.succeed({AddedValue:packageValues,MarketSuccess:true,Package:GetPackageResponseFromPackage(package)});
-                                            },error:function (error) {
-                                                context.fail("Internal server Error");
-                                            }});
+                                        var userPackagePurchase = new UserPackagePurchase();
+                                        userPackagePurchase.set("Package",package);
+                                        userPackagePurchase.set("Market",requestBody.market);
+                                        userPackagePurchase.set("Price",package.get("Price"));
+                                        userPackagePurchase.set("PurchaseToken",requestBody.purchaseToken);
+                                        userPackagePurchase.set("User",userData);
+                                        userPackagePurchase.save({success:function (userPackagePurchase) {
+                                            context.succeed({MarketSuccess:true});
                                         },error:function (error) {
                                             context.fail("Internal server Error");
                                         }});
                                     }
-
                                 },
                                 error: function (error) {
                                     context.fail("InternalServerError");
@@ -190,10 +176,10 @@ exports.GetItems = interception.Intercept(function (requestBody, context) {
             for (var i = 0; i < results.length; i++) {
                 var object = results[i];
                 if(_.has(requestBody,"Full")) {
-                    result.push({ItemId:object.get("ItemId"),Costs:object.get("Costs"),Name:object.get("Name")});
+                    result.push({ItemId:object.get("ItemId"),RentCost:object.get("RentCost"),PurchaseCost:object.get("PurchaseCost"),Name:object.get("Name")});
                 }
                 else{
-                    result.push({ItemId:object.get("ItemId"),Costs:object.get("Costs")});
+                    result.push({ItemId:object.get("ItemId"),RentCost:object.get("RentCost"),PurchaseCost:object.get("PurchaseCost")});
                 }
 
             }

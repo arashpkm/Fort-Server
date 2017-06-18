@@ -23,6 +23,7 @@ exports.AddScoreAndValues = interception.Intercept(function (requestBody, contex
     else{
         var Settings = Backtory.Object.extend("Settings");
         var query = new Backtory.Query(Settings);
+        query.equalTo("Tag","Fort");
         query.find({
             success: function (results) {
                 var result = results[0];
@@ -87,6 +88,7 @@ var SyncAddedScoreAndValues = function (context,addScoreValuesData,finalResult) 
     else{
         var Settings = Backtory.Object.extend("Settings");
         var query = new Backtory.Query(Settings);
+        query.equalTo("Tag","Fort");
         query.find({
             success: function (results) {
                 var result = results[0];
