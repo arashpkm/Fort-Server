@@ -191,56 +191,6 @@ exports.GetItems = interception.Intercept(function (requestBody, context) {
     });
 });
 
-exports.PurchaseItem = interception.Intercept(function (requestBody, context) {
-    if(!_.has(requestBody,"itemId")|| !_.isString(requestBody.itemId)){
-        context.fail("itemId parameter is needed");
-        return;
-    }
-    var Items = Backtory.Object.extend("Items");
-    var query = new Backtory.Query(Items);
-    query.equalTo("ItemId",requestBody.itemId);
-    query.find({
-        success: function(results) {
-            if(results.length==0){
-                context.fail("Item with this itemId not found");
-            }else{
-                var relation = context.userData.relation("PurchasedItems");
-                if(relation.contain(results[0].get("_id"))){
-                    context.succeed({
-                        Purchased:false
-                    });
-                }else{
-                    var costs = results[0].get("Costs");
-                    var keys = _.keys(costs);
-                    var values = context.userData.get("Values");
-                    for(var i=0;i<keys.length;i++){
-                        if(!_.has(values,keys[i])){
-                            context.fail("Key from costs mismatched");
-                            return;
-                        }
-                        if(values[keys[i]]<costs[keys[i]]){
-                            context.fail("Insufficient funds");
-                            return;
-                        }
-                        values[keys[i]]-=costs[keys[i]];
-                    }
-                    context.userData.set("Values",values);
-                    relation.add(results[0]);
-                    context.userData.save({success:function (userData) {
-                        context.succeed({Purchased:true});
-                    },error:function () {
-                        context.fail("Internal server error");
-                    }})
-                }
-            }
-
-        },
-        error: function(error) {
-            context.fail("Internal server error");
-        }
-    });
-});
-
 exports.GetPurchasedItems = interception.Intercept(function (requestBody, context) {
     var relation = context.userData.relation("PurchasedItems");
     BacktoryHelper.fetchAll(BacktoryHelper.getRelationObjects(relation),{success:function (results) {
