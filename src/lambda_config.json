@@ -71,5 +71,13 @@
     "handlerName":"Setting.GetSettings",
     "timeLimitInMilliSeconds":3000,
     "authenticationMode": "PUBLIC"
-  }
+  }, "GetAssetBundles":{
+     "handlerName":"AssetBundle.GetAssetBundles",
+     "timeLimitInMilliSeconds":3000,
+     "authenticationMode": "PUBLIC"
+  }, "UpdateAssetBundles":{
+  "handlerName":"AssetBundle.UpdateAssetBundles",
+  "timeLimitInMilliSeconds":3000,
+  "authenticationMode": "AUTHENTICATED"
+}
 }
