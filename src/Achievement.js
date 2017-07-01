@@ -56,3 +56,55 @@ exports.GetClaimedAchievements = interception.Intercept(function (requestBody, c
     var achievementObjectIds =getUserAchievementObjectIds(context);
     resolveAchievementsAndReturn(0,achievementObjectIds,[],context);
 });
+
+var UpdateOrAddAchievementsItem = function (items, index, actionResult) {
+    if(index===items.length){
+        actionResult(true);
+        return;
+    }
+    var Achievement = Backtory.Object.extend("Achievement");
+    var query = new Backtory.Query(Achievement);
+    query.equalTo("AchievementId",items[index].AchievementId);
+    query.find({
+        success: function(results) {
+            var item;
+            if(results.length===0){
+                item = new Achievement();
+                item.set("AchievementId",items[index].AchievementId);
+
+            }else{
+                item = results[0];
+            }
+            item.set("Name",items[index].Name);
+            item.set("Score",items[index].Score);
+            item.set("Values",items[index].Values);
+            item.save({
+                success: function (savedUserData) {
+                    UpdateOrAddAchievementsItem(items,index+1,actionResult);
+                },
+                error: function (error) {
+                    actionResult(false);
+                }
+            });
+        },
+        error: function(error) {
+            actionResult(false);
+        }
+    });
+};
+var UpdateAchievements = function (requestBody, context) {
+    if(!_.has(requestBody,"Items") || !_.isArray(requestBody.Items))
+    {
+        context.fail("Invalid Parameter");
+        return;
+    }
+    UpdateOrAddAchievementsItem(requestBody.Items,0,function (success) {
+        if(success){
+            context.succeed({});
+        }else{
+            context.fail("Internal server error");
+        }
+    })
+};
+UpdateAchievements.MasterOnly = true;
+exports.UpdateAchievements = interception.Intercept(UpdateAchievements);

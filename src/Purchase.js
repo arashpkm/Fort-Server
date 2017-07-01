@@ -194,10 +194,64 @@ exports.GetItems = interception.Intercept(function (requestBody, context) {
 exports.GetPurchasedItems = interception.Intercept(function (requestBody, context) {
     var relation = context.userData.relation("PurchasedItems");
     BacktoryHelper.fetchAll(BacktoryHelper.getRelationObjects(relation),{success:function (results) {
-        context.succeed(_.map(results,function (result) {
+
+        context.succeed(_.map(_.filter(results,function (result) {
+            return result !== null;
+        }),function (result) {
             return result.get("ItemId");
         }));
     },error:function () {
         context.fail("Internal server error");
     }});
 });
+var UpdateOrAddPurchaseItem = function (items, index, actionResult) {
+    if(index===items.length){
+        actionResult(true);
+        return;
+    }
+    var Items = Backtory.Object.extend("Items");
+    var query = new Backtory.Query(Items);
+    query.equalTo("ItemId",items[index].ItemId);
+    query.find({
+        success: function(results) {
+            var item;
+            if(results.length===0){
+                item = new Items();
+                item.set("ItemId",items[index].ItemId);
+
+            }else{
+                item = results[0];
+            }
+            item.set("Name",items[index].Name);
+            item.set("RentCost",items[index].RentCost);
+            item.set("PurchaseCost",items[index].PurchaseCost);
+            item.save({
+                success: function (savedUserData) {
+                    UpdateOrAddPurchaseItem(items,index+1,actionResult);
+                },
+                error: function (error) {
+                    actionResult(false);
+                }
+            });
+        },
+        error: function(error) {
+            actionResult(false);
+        }
+    });
+};
+var UpdateItems = function (requestBody, context) {
+    if(!_.has(requestBody,"Items") || !_.isArray(requestBody.Items))
+    {
+        context.fail("Invalid Parameter");
+        return;
+    }
+    UpdateOrAddPurchaseItem(requestBody.Items,0,function (success) {
+        if(success){
+            context.succeed({});
+        }else{
+            context.fail("Internal server error");
+        }
+    })
+};
+UpdateItems.MasterOnly = true;
+exports.UpdateItems = interception.Intercept(UpdateItems);

@@ -11,8 +11,10 @@ var internalFetchAll = function (index, objects, result) {
             objects[index] = obj;
             internalFetchAll(index+1,objects,result);
         },error:function () {
-            if(_.isFunction(result.error))
-                result.error(objects);
+/*            if(_.isFunction(result.error))
+                result.error(objects);*/
+            objects[index] = null;
+            internalFetchAll(index+1,objects,result);
         }});
     }
 }

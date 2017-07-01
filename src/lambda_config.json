@@ -77,7 +77,19 @@
      "authenticationMode": "PUBLIC"
   }, "UpdateAssetBundles":{
   "handlerName":"AssetBundle.UpdateAssetBundles",
-  "timeLimitInMilliSeconds":3000,
+  "timeLimitInMilliSeconds":9000,
   "authenticationMode": "AUTHENTICATED"
-}
+  }, "UpdateAchievements":{
+    "handlerName":"Achievement.UpdateAchievements",
+    "timeLimitInMilliSeconds":9000,
+    "authenticationMode": "AUTHENTICATED"
+  }, "UpdateItems":{
+    "handlerName":"Purchase.UpdateItems",
+    "timeLimitInMilliSeconds":9000,
+    "authenticationMode": "AUTHENTICATED"
+  }, "UpdateSettings":{
+    "handlerName":"Setting.UpdateSettings",
+    "timeLimitInMilliSeconds":9000,
+    "authenticationMode": "AUTHENTICATED"
+  }
 }
