@@ -1,0 +1,669 @@
+[
+    {
+        "className": "Roles",
+        "properties": {
+            "createdAt": {
+                "type": "Date"
+            },
+            "readACL": {
+                "type": "Array"
+            },
+            "editACL": {
+                "type": "Array"
+            },
+            "publicEditable": {
+                "type": "Boolean"
+            },
+            "roles": {
+                "type": "Array"
+            },
+            "name": {
+                "type": "String"
+            },
+            "ACL": {
+                "type": "ACL"
+            },
+            "_id": {
+                "type": "ObjectId"
+            },
+            "publicReadable": {
+                "type": "Boolean"
+            },
+            "users": {
+                "type": "Array"
+            },
+            "updatedAt": {
+                "type": "Date"
+            }
+        },
+        "publicReadable": true,
+        "publicEditable": true,
+        "readACL": [],
+        "editACL": [],
+        "preDefinedByBacktory": true
+    },
+    {
+        "className": "Users",
+        "properties": {
+            "verificationHash": {
+                "type": "String"
+            },
+            "lastName": {
+                "type": "String"
+            },
+            "additionalFields": {
+                "type": "Object"
+            },
+            "verified": {
+                "type": "Boolean"
+            },
+            "active": {
+                "type": "Boolean"
+            },
+            "ACL": {
+                "type": "ACL"
+            },
+            "createdAt": {
+                "type": "Date"
+            },
+            "readACL": {
+                "type": "Array"
+            },
+            "firstName": {
+                "type": "String"
+            },
+            "password": {
+                "type": "String"
+            },
+            "phoneNumber": {
+                "type": "String"
+            },
+            "forgotPasswordHash": {
+                "type": "String"
+            },
+            "editACL": {
+                "type": "Array"
+            },
+            "publicEditable": {
+                "type": "Boolean"
+            },
+            "guest": {
+                "type": "Boolean"
+            },
+            "_id": {
+                "type": "ObjectId"
+            },
+            "publicReadable": {
+                "type": "Boolean"
+            },
+            "email": {
+                "type": "String"
+            },
+            "updatedAt": {
+                "type": "Date"
+            },
+            "username": {
+                "type": "String"
+            }
+        },
+        "publicReadable": true,
+        "publicEditable": true,
+        "readACL": [],
+        "editACL": [],
+        "preDefinedByBacktory": true
+    },
+    {
+        "className": "Tokens",
+        "properties": {
+            "createdAt": {
+                "type": "Date"
+            },
+            "readACL": {
+                "type": "Array"
+            },
+            "editACL": {
+                "type": "Array"
+            },
+            "publicEditable": {
+                "type": "Boolean"
+            },
+            "ACL": {
+                "type": "ACL"
+            },
+            "_id": {
+                "type": "ObjectId"
+            },
+            "publicReadable": {
+                "type": "Boolean"
+            },
+            "updatedAt": {
+                "type": "Date"
+            },
+            "refreshToken": {
+                "type": "String"
+            }
+        },
+        "publicReadable": true,
+        "publicEditable": true,
+        "readACL": [],
+        "editACL": [],
+        "preDefinedByBacktory": true
+    },
+    {
+        "className": "Packages",
+        "properties": {
+            "Markets": {
+                "type": "Array"
+            },
+            "ACL": {
+                "type": "ACL"
+            },
+            "createdAt": {
+                "type": "Date"
+            },
+            "readACL": {
+                "type": "Array"
+            },
+            "Price": {
+                "type": "Number"
+            },
+            "editACL": {
+                "type": "Array"
+            },
+            "publicEditable": {
+                "type": "Boolean"
+            },
+            "PackageType": {
+                "type": "String"
+            },
+            "DisplayName": {
+                "type": "String"
+            },
+            "_id": {
+                "type": "ObjectId"
+            },
+            "Sku": {
+                "type": "String"
+            },
+            "publicReadable": {
+                "type": "Boolean"
+            },
+            "updatedAt": {
+                "type": "Date"
+            },
+            "PackageData": {
+                "type": "Object"
+            }
+        },
+        "publicReadable": true,
+        "publicEditable": true,
+        "readACL": [],
+        "editACL": [],
+        "preDefinedByBacktory": false
+    },
+    {
+        "className": "Regions",
+        "properties": {
+            "createdAt": {
+                "type": "Date"
+            },
+            "readACL": {
+                "type": "Array"
+            },
+            "editACL": {
+                "type": "Array"
+            },
+            "publicEditable": {
+                "type": "Boolean"
+            },
+            "ACL": {
+                "type": "ACL"
+            },
+            "_id": {
+                "type": "ObjectId"
+            },
+            "publicReadable": {
+                "type": "Boolean"
+            },
+            "updatedAt": {
+                "type": "Date"
+            },
+            "Name": {
+                "type": "Object"
+            }
+        },
+        "publicReadable": true,
+        "publicEditable": true,
+        "readACL": [],
+        "editACL": [],
+        "preDefinedByBacktory": false
+    },
+    {
+        "className": "Settings",
+        "properties": {
+            "createdAt": {
+                "type": "Date"
+            },
+            "readACL": {
+                "type": "Array"
+            },
+            "editACL": {
+                "type": "Array"
+            },
+            "publicEditable": {
+                "type": "Boolean"
+            },
+            "ACL": {
+                "type": "ACL"
+            },
+            "_id": {
+                "type": "ObjectId"
+            },
+            "Tag": {
+                "type": "String"
+            },
+            "publicReadable": {
+                "type": "Boolean"
+            },
+            "Settings": {
+                "type": "Object"
+            },
+            "updatedAt": {
+                "type": "Date"
+            }
+        },
+        "publicReadable": true,
+        "publicEditable": true,
+        "readACL": [],
+        "editACL": [],
+        "preDefinedByBacktory": false
+    },
+    {
+        "className": "PackageDiscount",
+        "properties": {
+            "createdAt": {
+                "type": "Date"
+            },
+            "readACL": {
+                "type": "Array"
+            },
+            "DiscountPercentage": {
+                "type": "Number"
+            },
+            "editACL": {
+                "type": "Array"
+            },
+            "publicEditable": {
+                "type": "Boolean"
+            },
+            "ACL": {
+                "type": "ACL"
+            },
+            "_id": {
+                "type": "ObjectId"
+            },
+            "publicReadable": {
+                "type": "Boolean"
+            },
+            "updatedAt": {
+                "type": "Date"
+            }
+        },
+        "publicReadable": true,
+        "publicEditable": true,
+        "readACL": [],
+        "editACL": [],
+        "preDefinedByBacktory": false
+    },
+    {
+        "className": "Userdata",
+        "properties": {
+            "PurchasedItems": {
+                "type": "Relation",
+                "targetClass": "Items"
+            },
+            "LastAddId": {
+                "type": "Number"
+            },
+            "UserName": {
+                "type": "String"
+            },
+            "UserAchievements": {
+                "type": "Relation",
+                "targetClass": "Achievement"
+            },
+            "IsActive": {
+                "type": "Boolean"
+            },
+            "Values": {
+                "type": "Object"
+            },
+            "InvitationCount": {
+                "type": "Number"
+            },
+            "ACL": {
+                "type": "ACL"
+            },
+            "UserConfig": {
+                "type": "Object"
+            },
+            "ScoreAndValuesAddedTokens": {
+                "type": "Array"
+            },
+            "InvitationToken": {
+                "type": "String"
+            },
+            "createdAt": {
+                "type": "Date"
+            },
+            "readACL": {
+                "type": "Array"
+            },
+            "Score": {
+                "type": "Number"
+            },
+            "Invitor": {
+                "type": "Pointer",
+                "targetClass": "Userdata"
+            },
+            "InvitationAddedValues": {
+                "type": "Object"
+            },
+            "UserId": {
+                "type": "String"
+            },
+            "editACL": {
+                "type": "Array"
+            },
+            "publicEditable": {
+                "type": "Boolean"
+            },
+            "ScoreAndCoinAddedTokens": {
+                "type": "Array"
+            },
+            "_id": {
+                "type": "ObjectId"
+            },
+            "publicReadable": {
+                "type": "Boolean"
+            },
+            "updatedAt": {
+                "type": "Date"
+            }
+        },
+        "publicReadable": true,
+        "publicEditable": true,
+        "readACL": [],
+        "editACL": [],
+        "preDefinedByBacktory": false
+    },
+    {
+        "className": "Achievement",
+        "properties": {
+            "createdAt": {
+                "type": "Date"
+            },
+            "readACL": {
+                "type": "Array"
+            },
+            "Score": {
+                "type": "Number"
+            },
+            "editACL": {
+                "type": "Array"
+            },
+            "publicEditable": {
+                "type": "Boolean"
+            },
+            "AchievementId": {
+                "type": "String"
+            },
+            "Values": {
+                "type": "Object"
+            },
+            "ACL": {
+                "type": "ACL"
+            },
+            "_id": {
+                "type": "ObjectId"
+            },
+            "publicReadable": {
+                "type": "Boolean"
+            },
+            "updatedAt": {
+                "type": "Date"
+            },
+            "Name": {
+                "type": "String"
+            }
+        },
+        "publicReadable": true,
+        "publicEditable": true,
+        "readACL": [],
+        "editACL": [],
+        "preDefinedByBacktory": false
+    },
+    {
+        "className": "UserPackagePurchase",
+        "properties": {
+            "PurchaseToken": {
+                "type": "String"
+            },
+            "User": {
+                "type": "Pointer",
+                "targetClass": "Userdata"
+            },
+            "ACL": {
+                "type": "ACL"
+            },
+            "Market": {
+                "type": "String"
+            },
+            "createdAt": {
+                "type": "Date"
+            },
+            "readACL": {
+                "type": "Array"
+            },
+            "Price": {
+                "type": "Number"
+            },
+            "editACL": {
+                "type": "Array"
+            },
+            "publicEditable": {
+                "type": "Boolean"
+            },
+            "_id": {
+                "type": "ObjectId"
+            },
+            "Package": {
+                "type": "Pointer",
+                "targetClass": "Packages"
+            },
+            "publicReadable": {
+                "type": "Boolean"
+            },
+            "updatedAt": {
+                "type": "Date"
+            }
+        },
+        "publicReadable": true,
+        "publicEditable": true,
+        "readACL": [],
+        "editACL": [],
+        "preDefinedByBacktory": false
+    },
+    {
+        "className": "Markets",
+        "properties": {
+            "createdAt": {
+                "type": "Date"
+            },
+            "readACL": {
+                "type": "Array"
+            },
+            "Config": {
+                "type": "Object"
+            },
+            "editACL": {
+                "type": "Array"
+            },
+            "publicEditable": {
+                "type": "Boolean"
+            },
+            "ACL": {
+                "type": "ACL"
+            },
+            "_id": {
+                "type": "ObjectId"
+            },
+            "publicReadable": {
+                "type": "Boolean"
+            },
+            "updatedAt": {
+                "type": "Date"
+            },
+            "Name": {
+                "type": "String"
+            }
+        },
+        "publicReadable": true,
+        "publicEditable": true,
+        "readACL": [],
+        "editACL": [],
+        "preDefinedByBacktory": false
+    },
+    {
+        "className": "Items",
+        "properties": {
+            "createdAt": {
+                "type": "Date"
+            },
+            "readACL": {
+                "type": "Array"
+            },
+            "PurchaseCost": {
+                "type": "Object"
+            },
+            "editACL": {
+                "type": "Array"
+            },
+            "publicEditable": {
+                "type": "Boolean"
+            },
+            "ACL": {
+                "type": "ACL"
+            },
+            "_id": {
+                "type": "ObjectId"
+            },
+            "RentCost": {
+                "type": "Object"
+            },
+            "ItemId": {
+                "type": "String"
+            },
+            "publicReadable": {
+                "type": "Boolean"
+            },
+            "updatedAt": {
+                "type": "Date"
+            },
+            "Name": {
+                "type": "String"
+            }
+        },
+        "publicReadable": true,
+        "publicEditable": true,
+        "readACL": [],
+        "editACL": [],
+        "preDefinedByBacktory": false
+    },
+    {
+        "className": "MethodTokens",
+        "properties": {
+            "createdAt": {
+                "type": "Date"
+            },
+            "readACL": {
+                "type": "Array"
+            },
+            "ExpireDate": {
+                "type": "Number"
+            },
+            "Used": {
+                "type": "Boolean"
+            },
+            "editACL": {
+                "type": "Array"
+            },
+            "publicEditable": {
+                "type": "Boolean"
+            },
+            "ACL": {
+                "type": "ACL"
+            },
+            "Token": {
+                "type": "String"
+            },
+            "_id": {
+                "type": "ObjectId"
+            },
+            "publicReadable": {
+                "type": "Boolean"
+            },
+            "updatedAt": {
+                "type": "Date"
+            }
+        },
+        "publicReadable": true,
+        "publicEditable": true,
+        "readACL": [],
+        "editACL": [],
+        "preDefinedByBacktory": false
+    },
+    {
+        "className": "AssetBundle",
+        "properties": {
+            "createdAt": {
+                "type": "Date"
+            },
+            "readACL": {
+                "type": "Array"
+            },
+            "Versions": {
+                "type": "Array"
+            },
+            "Platform": {
+                "type": "String"
+            },
+            "editACL": {
+                "type": "Array"
+            },
+            "publicEditable": {
+                "type": "Boolean"
+            },
+            "ACL": {
+                "type": "ACL"
+            },
+            "_id": {
+                "type": "ObjectId"
+            },
+            "publicReadable": {
+                "type": "Boolean"
+            },
+            "updatedAt": {
+                "type": "Date"
+            },
+            "Name": {
+                "type": "String"
+            }
+        },
+        "publicReadable": true,
+        "publicEditable": true,
+        "readACL": [],
+        "editACL": [],
+        "preDefinedByBacktory": false
+    }
+]
