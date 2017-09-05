@@ -39,7 +39,8 @@ var UpdateSettings = function (requestBody, context) {
             }else{
                 setting = results[0];
             }
-            console.log(JSON.stringify(requestBody.ServerSettings));
+            context.log(JSON.stringify(requestBody.ServerSettings));
+
             setting.set("Settings",requestBody.ServerSettings);
             setting.save({
                 success: function (savedUserData) {
