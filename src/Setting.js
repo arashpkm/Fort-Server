@@ -39,7 +39,7 @@ var UpdateSettings = function (requestBody, context) {
             }else{
                 setting = results[0];
             }
-            setting.set("Settings",requestBody.ServerSettings);
+            setting.set("Settings",12);//requestBody.ServerSettings);
             setting.save({
                 success: function (savedUserData) {
                     context.succeed({});
