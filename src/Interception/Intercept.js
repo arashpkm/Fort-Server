@@ -27,17 +27,20 @@ function CheckUserAndAdd(requestBody, context, finalAction) {
                 query.equalTo("Tag","Fort");
                 query.find({
                     success: function (results) {
+                        var userData = new UserData();
+
                         var result = results[0];
                         var settings = result.get("Settings");
-                        var userData = new UserData();
-                        userData.set("Score", 0);
-                        var values={};
-                        for(var i=0;i<settings.ValuesDefenition.length;i++){
-                            values[settings.ValuesDefenition[i]] = settings.StartupValues[settings.ValuesDefenition[i]];
+                        if(result != undefined){
+                            var values={};
+                            for(var i=0;i<settings.ValuesDefenition.length;i++){
+                                values[settings.ValuesDefenition[i]] = settings.StartupValues[settings.ValuesDefenition[i]];
+                            }
+                            userData.set("Values", values);
                         }
-                        userData.set("Values", values);
-                        userData.set("UserId", userId);
+                        userData.set("Score", 0);
                         userData.set("LastAddId", 0);
+                        userData.set("UserId", userId);
                         userData.set("UserName", userName);
                         userData.save({
                             success: function (savedUserData) {
